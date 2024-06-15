@@ -1,0 +1,72 @@
+name: Continuous Integration
+
+on:
+    pull_request:
+        branches:
+            - main
+    push:
+        branches:
+            - main
+
+permissions:
+    contents: read
+
+jobs:
+    test-action:
+        name: GitHub Actions Test
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              id: checkout
+              uses: actions/checkout@v4
+
+            - name: Test Local Action
+              id: test-action
+              uses: ./
+              with:
+                  markdown: |
+                      # header 1
+
+                      ## header 2
+
+                      ### header 3
+
+                      Spoiler alert: !!!spoilers work\!!!!
+
+                      Should we make this *italicized* or **bold**?
+                      Or should we ~~delete~~ this?
+
+                      Let's __underline__ this.
+
+                      {{{
+                      This will be rendered [b]literally[/b]
+                      in *Steam*.
+                      }}}
+
+                      ---
+
+                      Here's the [store page](https://store.steampowered.com/)!
+
+                      You can
+
+                      - browse
+                      - buy
+                      - wishlist
+
+                      1. Add to cart
+                      2. pay
+                      3. play
+
+                      >That's neat!
+                      (anonymous)
+
+                      We've got `code`, too!
+
+                      |        question       | answer |
+                      | :-------------------: | :----: |
+                      | Are tables supported? |  Yes!  |
+
+            - name: Print Output
+              id: output
+              run: echo "${{ steps.test-action.outputs.steam-markup }}"

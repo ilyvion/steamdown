@@ -1,0 +1,16 @@
+name: "Steamdown"
+description: "Converts Markdown to Steam markup"
+author: "Alexander Krivács Schrøder"
+
+inputs:
+    markdown:
+        description: "Markdown input string"
+        required: true
+
+outputs:
+    steam-markup:
+        description: "Steam markup output string"
+
+runs:
+    using: "node20"
+    main: "dist/index.js"
