@@ -25191,13 +25191,19 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
 const steamdown_1 = __importDefault(__nccwpck_require__(8585));
 try {
-    const markdown = core.getInput("markdown");
-    const escapeQuotes = core.getInput("escape-quotes");
+    const markdown = core.getInput("markdown", { required: true });
+    const escapeQuotes = core.getBooleanInput("escape-quotes");
+    core.info("Escape quotes: " + escapeQuotes);
+    core.startGroup("Input markup");
+    core.info(markdown);
+    core.endGroup();
     let steamMarkup = (0, steamdown_1.default)(markdown);
-    if (escapeQuotes.toLowerCase() === "yes" ||
-        escapeQuotes.toLowerCase() === "true") {
-        steamMarkup = steamMarkup.replace('"', '\\"');
+    if (escapeQuotes) {
+        steamMarkup = steamMarkup.replace(/"/g, '\\"');
     }
+    core.startGroup("Output markup");
+    core.info(steamMarkup);
+    core.endGroup();
     core.setOutput("steam-markup", steamMarkup);
 }
 catch (error) {

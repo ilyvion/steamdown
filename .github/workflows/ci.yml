@@ -69,12 +69,6 @@ jobs:
                       | :-------------------: | :----: |
                       | Are tables supported? |  Yes!  |
 
-            - name: Print Output
-              id: output
-              run: echo $OUTPUT
-              env:
-                  OUTPUT: ${{ steps.test-action.outputs.steam-markup }}
-
             - name: Test Local Action (with quote escaping)
               id: test-action2
               uses: ./
@@ -123,9 +117,3 @@ jobs:
                       |        question       | answer |
                       | :-------------------: | :----: |
                       | Are tables supported? |  Yes!  |
-
-            - name: Print Output
-              id: output2
-              run: echo $OUTPUT
-              env:
-                  OUTPUT: ${{ steps.test-action.outputs.steam-markup }}
