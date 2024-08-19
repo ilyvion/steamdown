@@ -6,6 +6,8 @@ inputs:
     markdown:
         description: "Markdown input string"
         required: true
+    escape-quotes:
+        description: "Whether to escape quotation marks; accepted values are 'yes' or 'true'"
 
 outputs:
     steam-markup:

@@ -25192,7 +25192,12 @@ const core = __importStar(__nccwpck_require__(2186));
 const steamdown_1 = __importDefault(__nccwpck_require__(8585));
 try {
     const markdown = core.getInput("markdown");
-    const steamMarkup = (0, steamdown_1.default)(markdown);
+    const escapeQuotes = core.getInput("escape-quotes");
+    let steamMarkup = (0, steamdown_1.default)(markdown);
+    if (escapeQuotes.toLowerCase() === "yes" ||
+        escapeQuotes.toLowerCase() === "true") {
+        steamMarkup = steamMarkup.replace('"', '\\"');
+    }
     core.setOutput("steam-markup", steamMarkup);
 }
 catch (error) {
