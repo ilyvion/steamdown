@@ -1,5 +1,8 @@
 import * as core from "@actions/core";
-import parse from "steamdown";
+import steamdown from "steamdown";
+
+// steamdown is CommonJS, so its `export default` lands on the module object's `default` property.
+const parse = steamdown.default;
 
 try {
     const markdown = core.getInput("markdown", { required: true });

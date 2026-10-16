@@ -5,9 +5,8 @@
         "module": "NodeNext",
         "rootDir": "./src",
         "moduleResolution": "NodeNext",
-        "baseUrl": "./",
         "sourceMap": true,
-        "outDir": "./dist",
+        "outDir": "./build",
         "noImplicitAny": true,
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
@@ -17,6 +16,7 @@
     },
     "exclude": [
         "./dist",
+        "./build",
         "./node_modules",
         "./__tests__",
         "./coverage"
